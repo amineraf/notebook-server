@@ -6,7 +6,7 @@ import com.oracle.proof.model.AvailableLang;
 import com.oracle.proof.model.RequestCode;
 import com.oracle.proof.model.Response;
 
-public abstract class AbstractFactoryResponse<T> {
-    abstract public Response performResponse(RequestCode code, ConcurrentHashMap<String, T> interpretor);
+public abstract class AbstractFactoryResponse {
+    abstract public Response performResponse(RequestCode code);
 
 }
