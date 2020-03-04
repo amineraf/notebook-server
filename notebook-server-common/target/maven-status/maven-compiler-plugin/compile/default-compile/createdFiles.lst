@@ -1,0 +1,4 @@
+com\oracle\proof\facade\AbstractFactoryResponse.class
+com\oracle\proof\model\Response.class
+com\oracle\proof\model\AvailableLang.class
+com\oracle\proof\model\Request.class

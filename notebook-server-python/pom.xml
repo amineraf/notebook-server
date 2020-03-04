@@ -4,18 +4,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <artifactId>notebook-server-app</artifactId>
-    <groupId>org.example</groupId>
+    <groupId>com.oracle.proof</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>notebook-server-python</artifactId>
-  <dependencies>
+ <dependencies>
     <dependency>
-      <groupId>org.example</groupId>
+      <groupId>com.oracle.proof</groupId>
       <artifactId>notebook-server-common</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython-installer</artifactId>
+      <version>2.7.2b3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython-standalone</artifactId>
+      <version>2.7.2b3</version>
     </dependency>
   </dependencies>
 
