@@ -1,8 +1,9 @@
 package com.oracle.proof.model;
 
-public class RequestCode {
+public class ScriptRequest {
     private String code;
     private String sessionId;
+    private String language;
 
     public String getCode() {
         return code;
@@ -18,5 +19,13 @@ public class RequestCode {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
