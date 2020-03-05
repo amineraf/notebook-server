@@ -9,6 +9,9 @@ public class Response {
         this.error = error;
     }
 
+    public Response() {
+    }
+
     public String getResult() {
         return result;
     }
