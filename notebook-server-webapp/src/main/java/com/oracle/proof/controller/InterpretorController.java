@@ -1,25 +1,26 @@
 package com.oracle.proof.controller;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpSession;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.oracle.proof.interpreter.AbstractLangInterpreter;
+import com.oracle.proof.model.ScriptRequest;
+import com.oracle.proof.model.ScriptResponse;
+import com.oracle.proof.validator.CorrectRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.BeanFactoryAnnotationUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.oracle.proof.facade.AbstractLangInterpreterFactory;
-import com.oracle.proof.model.Response;
-import com.oracle.proof.model.ScriptRequest;
+import javax.servlet.http.HttpSession;
+import java.util.concurrent.Callable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @ComponentScan(basePackages = "com.oracle.proof")
+@Validated
 @RestController
 public class InterpretorController {
     private static final String REQUEST_PATTERN = "%(\\w+)\\s+(.*)";
@@ -28,12 +29,17 @@ public class InterpretorController {
     ApplicationContext applicationContext;
 
     @PostMapping("/execute")
-    public ResponseEntity<Response> execute(@RequestBody ScriptRequest scriptRequest, HttpSession httpSession) throws JsonProcessingException {
-        String sessionId = scriptRequest.getSessionId() != null ? scriptRequest.getSessionId() : httpSession.getId();
-        getInterpreterRequest(scriptRequest);
-        AbstractLangInterpreterFactory abstractLangInterpreterFactory = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(), AbstractLangInterpreterFactory.class, scriptRequest.getLanguage());
-        Response response= abstractLangInterpreterFactory.performResponse(scriptRequest);
-        return ResponseEntity.ok(response);
+    public Callable<ScriptResponse> execute(@CorrectRequest @RequestBody ScriptRequest scriptRequest, HttpSession httpSession) throws JsonProcessingException {
+        return new Callable<ScriptResponse>() {
+            @Override
+            public ScriptResponse call() {
+                scriptRequest.setSessionId(scriptRequest.getSessionId() != null ? scriptRequest.getSessionId() : httpSession.getId());
+                getInterpreterRequest(scriptRequest);
+                AbstractLangInterpreter abstractLangInterpreter = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(), AbstractLangInterpreter.class, scriptRequest.getLanguage());
+                ScriptResponse scriptResponse = abstractLangInterpreter.performResponse(scriptRequest);
+                return scriptResponse;
+            }
+        };
     }
 
     private void getInterpreterRequest(ScriptRequest scriptRequest) {

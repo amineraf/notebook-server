@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/notebook-server-app.iml" filepath="$PROJECT_DIR$/notebook-server-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/notebook-server-common/notebook-server-common.iml" filepath="$PROJECT_DIR$/notebook-server-common/notebook-server-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notebook-server-core/notebook-server-core.iml" filepath="$PROJECT_DIR$/notebook-server-core/notebook-server-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/notebook-server-python/notebook-server-python.iml" filepath="$PROJECT_DIR$/notebook-server-python/notebook-server-python.iml" />
       <module fileurl="file://$PROJECT_DIR$/notebook-server-webapp/notebook-server-webapp.iml" filepath="$PROJECT_DIR$/notebook-server-webapp/notebook-server-webapp.iml" />
     </modules>

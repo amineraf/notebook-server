@@ -1,15 +1,15 @@
 package com.oracle.proof.model;
 
-public class Response {
+public class ScriptResponse {
     String result;
     String error;
 
-    public Response(String result, String error) {
+    public ScriptResponse(String result, String error) {
         this.result = result;
         this.error = error;
     }
 
-    public Response() {
+    public ScriptResponse() {
     }
 
     public String getResult() {

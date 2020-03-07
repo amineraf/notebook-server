@@ -1,38 +1,36 @@
 package com.oracle.proof;
 
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.regex.Pattern;
 
-import com.oracle.proof.facade.AbstractLangInterpreterFactory;
+import com.oracle.proof.interpreter.AbstractLangInterpreter;
 import com.oracle.proof.model.ScriptRequest;
 
-import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.oracle.proof.model.Response;
+import com.oracle.proof.model.ScriptResponse;
 import com.oracle.proof.service.PythonService;
 
 @Component
 @Qualifier("python")
-public class PythonInterpreterFactory extends AbstractLangInterpreterFactory {
-    static ConcurrentHashMap<String, PythonInterpreter> pythonList = new ConcurrentHashMap<String, PythonInterpreter>();
+public class PythonInterpreter extends AbstractLangInterpreter {
+    static ConcurrentHashMap<String, org.python.util.PythonInterpreter> pythonList = new ConcurrentHashMap<String, org.python.util.PythonInterpreter>();
     @Autowired
     private PythonService pythonService;
 
 
-    public Response performResponse(ScriptRequest scriptRequest) {
+    public ScriptResponse performResponse(ScriptRequest scriptRequest) {
         try {
-            PythonInterpreter interpreter = pythonList.get(scriptRequest.getSessionId());
+            org.python.util.PythonInterpreter interpreter = pythonList.get(scriptRequest.getSessionId());
             if (interpreter == null) {
-                interpreter = new PythonInterpreter();
+                interpreter = new org.python.util.PythonInterpreter();
             }
             pythonList.put(scriptRequest.getSessionId(), interpreter);
             return pythonService.execute(scriptRequest, interpreter);
         } catch (Exception e) {
             pythonList.remove(scriptRequest.getSessionId());
-            return new Response("", "there is an error");
+            return new ScriptResponse("", "there is an error");
         }
     }
 }

@@ -1,6 +1,9 @@
 package com.oracle.proof.model;
 
+import javax.validation.constraints.NotNull;
+
 public class ScriptRequest {
+    @NotNull(message = "Code cannot be null")
     private String code;
     private String sessionId;
     private String language;

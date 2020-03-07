@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -10,7 +10,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="notebook-server-common" />
+    <orderEntry type="module" module-name="notebook-server-core" />
+    <orderEntry type="library" name="Maven: com.oracle.proof:notebook-server-common:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.python:jython-installer:2.7.2b3" level="project" />
     <orderEntry type="library" name="Maven: org.python:jython-standalone:2.7.2b3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.2.5.RELEASE" level="project" />
