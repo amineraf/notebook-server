@@ -1,0 +1,16 @@
+.idea
+*.iml
+target/
+*.ipr
+*.iws
+.settings/
+.project
+.metadata/
+Servers
+.classpath
+build/
+.springBeans
+*.log  
+war/
+bin/
+javacc/*.java
