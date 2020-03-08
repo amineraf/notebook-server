@@ -30,7 +30,7 @@ public class PythonLangInterpreter extends AbstractLangInterpreter {
             return pythonInterpreterService.execute(scriptRequest, interpreter);
         } catch (Exception e) {
             pythonList.remove(scriptRequest.getSessionId());
-            return new ScriptResponse("", PARSING_ERROR +scriptRequest.getLanguage());
+            return new ScriptResponse("", PARSING_ERROR + scriptRequest.getLanguage());
         }
     }
 }

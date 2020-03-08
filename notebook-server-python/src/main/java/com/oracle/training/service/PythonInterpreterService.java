@@ -22,7 +22,7 @@ public class PythonInterpreterService {
             ScriptResponse scriptResponse = new ScriptResponse(out.toString(), "");
             return scriptResponse;
         } catch (Exception e) {
-           throw new InterpreterException();
+            throw new InterpreterException();
         }
     }
 }

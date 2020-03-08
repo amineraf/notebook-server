@@ -21,7 +21,6 @@ import com.oracle.training.model.ScriptRequest;
 import com.oracle.training.model.ScriptResponse;
 import com.oracle.training.validator.ValidatePayload;
 
-//@ComponentScan(basePackages = "com.oracle.proof")
 @Validated
 @RestController
 public class InterpreterController {

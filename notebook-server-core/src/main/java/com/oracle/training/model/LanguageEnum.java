@@ -3,7 +3,7 @@ package com.oracle.training.model;
 public enum LanguageEnum {
 
     PYTHON("python");
-    //Adding , NEWLANGUAGE("NEWLANGUAGE");
+    // todo Adding , NEWLANGUAGE("NEWLANGUAGE");
 
     private String langName;
 

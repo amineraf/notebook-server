@@ -9,9 +9,6 @@ public class ScriptResponse {
         this.error = error;
     }
 
-    public ScriptResponse() {
-    }
-
     public String getResult() {
         return result;
     }
