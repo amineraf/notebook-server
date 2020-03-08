@@ -6,22 +6,33 @@ Clone project into a local folder.
 
 $ git clone https://github.com/amineraf/notebook-server
 
-####  Maven Installation
+#### Maven Installation
 
 Maven
-First Step will be to install latest version of Maven.
+Install the last version of Maven.
 
 Build and Run project
-Once every thing is installed, run a maven clean install package or maven package in the project so the jar file can be generated. (You can skip Tests).
 
-**$ mvn clean install**
+Once every thing is installed, run maven package in the project so the jar file can be generated. (You can skip Tests).
+
+**$ mvn package -DskipTests**
 
 Then You can run the project using the java -jar command.
 
-**$ java -jar notebook-server-webapp/target/notebook-interpreter-1.0-SNAPSHOT.jar**
+**$ java -jar notebook-server-webapp/target/notebook-server-webapp-1.0-SNAPSHOT.jar**
+
+The server of notebook-server is up and runing on the endpoint http://localhost:8080
+
+_If the port 8080 is already used you can change the port under notebook-server-webapp>>application.properties server.port_
+
 
 ### 2- Usage
-- Api End-PointThe Interpreter API is available via http POST method at:/executeInterpreter request bodyThe /execute interpreter End-Point accepts JSON as request body.
+
+- You can use postman to test the app :
+    - make the url and choose POST as method (Get is selected by default)
+    - Use the Body and enter the payload (The json object)
+    - Choose row and Json as language
+    - Click on send
 
 - The json object must have the following format `{"code": "string", "sessionId": "string"}`
 
@@ -31,10 +42,17 @@ Then You can run the project using the java -jar command.
 
 - example `{"code": "%python print 1+1 ", "sessionId": "96385214524588888"}`
 
-- The Pyaload should be as follow  via curl:
- $ `curl -X POST http://localhost:8080/execute -d '{"code": "%python print 1+1 ", "sessionId": "96385214524588888"}'`
-- The code to be interpreted, it must have the format:%language code knowing that  language is the supported languages.
-- If the code is null or it didn't the above format or include not supported language the error message will be displayed
-- If the request excedd the time out parameter an error message will ocurr. The paramater of the time out is `pring.mvc.async.request-timeout` under notebook-server-webapp>>application.properties
+- The code to be interpreted must have the format:%language code knowing that language should be a supported language.
 
+- If the code is null or didn't respect the above format or include not supported language the error message will be displayed
 
+- If the request exceeds the time out parameter an error message will ocurr. The paramater of the timeout is `pring.mvc.async.request-timeout` under notebook-server-webapp>>application.properties
+
+### 3- Adding new Language
+- Use the template package to add new language : notebook-server-new-lang-templ
+
+- Add this language to the Enum LanguageEnum  (see example commented)
+
+- Add the interpretor language in the local pom file of the module
+
+- Add the new module in the general pom.xml

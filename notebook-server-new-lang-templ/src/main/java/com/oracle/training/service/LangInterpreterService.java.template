@@ -1,0 +1,15 @@
+package com.oracle.training.service;
+
+@Service
+public class LangInterpreterService {
+
+    public ScriptResponse execute(ScriptRequest interpreterCode, LangInterpreter interpreter) throws InterpreterException {
+
+        try {
+
+            return scriptResponse;
+        } catch (Exception e) {
+            throw new InterpreterException();
+        }
+    }
+}

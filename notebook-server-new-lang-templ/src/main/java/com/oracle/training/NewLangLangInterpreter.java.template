@@ -1,0 +1,23 @@
+package com.oracle.training;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+
+@Component
+@Qualifier("newLang")
+public class NewLangInterpreter extends AbstractLangInterpreter {
+    static ConcurrentHashMap<String, LangInterpretor> langList = new ConcurrentHashMap<String,LangInterpretor>();
+    private String PARSING_ERROR = "Error when parsing language: ";
+    @Autowired
+    private LangInterpreterService langInterpreterService;
+
+    public ScriptResponse execute(ScriptRequest scriptRequest) {
+        try {
+
+            return pythonInterpreterService.execute(scriptRequest, interpreter);
+        } catch (Exception e) {
+
+            return new ScriptResponse("", PARSING_ERROR + scriptRequest.getLanguage());
+        }
+    }
+}

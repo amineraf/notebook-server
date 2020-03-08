@@ -29,7 +29,7 @@ public class InterpretorControllerTest {
     private InterpreterController controller;
     @Autowired
     private MockMvc mvc;
-    private String URI = "http://localhost:8081/execute";
+    private String URI = "http://localhost:8080/execute";
     private String VALID_SCRIPT = "%python print 1+1";
     private String INVALID_SCRIPT = "print 1+1";
     private String INVALID_LANG = "%java print 1+1";
