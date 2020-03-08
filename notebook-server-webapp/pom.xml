@@ -5,7 +5,7 @@
   <parent>
     <artifactId>notebook-server-app</artifactId>
     <groupId>com.oracle.proof</groupId>
-    <version>notebook-interpreter-1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -14,13 +14,13 @@
     <dependency>
       <groupId>com.oracle.proof</groupId>
       <artifactId>notebook-server-common</artifactId>
-      <version>notebook-interpreter-1.0-SNAPSHOT</version>
+      <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.oracle.proof</groupId>
       <artifactId>notebook-server-python</artifactId>
-      <version>notebook-interpreter-1.0-SNAPSHOT</version>
+      <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

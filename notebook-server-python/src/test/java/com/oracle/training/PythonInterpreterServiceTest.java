@@ -36,10 +36,9 @@ public class PythonInterpreterServiceTest {
     }
 
     @Test
-    public void sould_excute_script() throws InterpreterException {
+    public void should_execute_script() throws InterpreterException {
         scriptRequest.setCode(VALID_SCRIPT_WITH_VAR);
         assertThat(isInvalidResult(pythonInterpreterService.execute(scriptRequest, interpreter)), Is.is(false));
-
         scriptRequest.setCode(VALID_SCRIPT_OPERATION);
         assertThat(isInvalidResult(pythonInterpreterService.execute(scriptRequest, interpreter)), Is.is(false));
     }

@@ -18,7 +18,7 @@ Once every thing is installed, run a maven clean install package or maven packag
 
 Then You can run the project using the java -jar command.
 
-**$ java -jar target/notebook-interpreter-1.0-SNAPSHOT.jar**
+**$ java -jar notebook-server-webapp/target/notebook-interpreter-1.0-SNAPSHOT.jar**
 
 ### 2- Usage
 - Api End-PointThe Interpreter API is available via http POST method at:/executeInterpreter request bodyThe /execute interpreter End-Point accepts JSON as request body.
@@ -33,11 +33,8 @@ Then You can run the project using the java -jar command.
 
 - The Pyaload should be as follow  via curl:
  $ `curl -X POST http://localhost:8080/execute -d '{"code": "%python print 1+1 ", "sessionId": "96385214524588888"}'`
-- The code to be interpreted, it must have the format:%language codewhere language is one of the supported languages (look project description), 
-- if The code is null or it didn't the above format or include not supported language the error message will be displayed
+- The code to be interpreted, it must have the format:%language code knowing that  language is the supported languages.
+- If the code is null or it didn't the above format or include not supported language the error message will be displayed
+- If the request excedd the time out parameter an error message will ocurr. The paramater of the time out is `pring.mvc.async.request-timeout` under notebook-server-webapp>>application.properties
 
-### 3- Adding new Language
-- Use the template package to add new language
-- Add this language to the Enum
-- Add the new module in the general pom.xml
 

@@ -16,7 +16,7 @@ import com.oracle.training.service.PythonInterpreterService;
 @Qualifier("python")
 public class PythonLangInterpreter extends AbstractLangInterpreter {
     static ConcurrentHashMap<String, org.python.util.PythonInterpreter> pythonList = new ConcurrentHashMap<String, org.python.util.PythonInterpreter>();
-    private String PARSING_ERROR = "Interpreting error with Language: ";
+    private String PARSING_ERROR = "Error when parsing language: ";
     @Autowired
     private PythonInterpreterService pythonInterpreterService;
 

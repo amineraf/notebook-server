@@ -7,20 +7,22 @@ import com.oracle.training.model.ScriptRequest;
 
 public class InterpreterRequestValidator implements ConstraintValidator<ValidatePayload, ScriptRequest> {
 
+    private static final String CODE_MISSING="Request code is required";
     private static final String REQUEST_PATTERN = "%(\\w+)\\s+(.*)";
 
     @Override
     public boolean isValid(ScriptRequest request, ConstraintValidatorContext context) {
         if (request == null || request.getCode() == null || request.getCode().isEmpty()) {
-            context.buildConstraintViolationWithTemplate("Request code is required")
+            context.buildConstraintViolationWithTemplate(CODE_MISSING)
                 .addPropertyNode("code")
                 .addConstraintViolation();
             return false;
         }
 
         if (!patternValidator(request.getCode())) {
-            context.buildConstraintViolationWithTemplate("Invalid request code format.")
-                .addPropertyNode("code").addConstraintViolation();
+            context.buildConstraintViolationWithTemplate("")
+               .addPropertyNode("code")
+                .addConstraintViolation();
             return false;
         }
         return true;

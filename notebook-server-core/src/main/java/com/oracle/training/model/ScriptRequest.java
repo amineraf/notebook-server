@@ -1,7 +1,5 @@
 package com.oracle.training.model;
 
-import javax.validation.constraints.NotNull;
-
 public class ScriptRequest {
 
     private String code;
