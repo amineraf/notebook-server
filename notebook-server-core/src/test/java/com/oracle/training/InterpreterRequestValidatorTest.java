@@ -27,9 +27,10 @@ public class InterpreterRequestValidatorTest {
     private InterpreterRequestValidator interpreterRequestValidator;
     private ScriptRequest scriptRequest;
     private ConstraintValidatorContext.ConstraintViolationBuilder builder;
-    private String VALID_SCRIPT_WITHOUT_PERCENT = "python print 1+1";
-    private String INVALID_SCRIPT = "python 22";
-    private String VALID_SCRIPT = "%python print 1+1";
+    private static String VALID_SCRIPT_WITHOUT_PERCENT = "python print 1+1";
+    private static String INVALID_SCRIPT = "python 22";
+    private static String VALID_SCRIPT = "%python print 1+1";
+
     @Mock
     private ConstraintValidatorContext context;
 

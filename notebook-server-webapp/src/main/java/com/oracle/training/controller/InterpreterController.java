@@ -31,20 +31,18 @@ public class InterpreterController {
     ApplicationContext applicationContext;
 
     @PostMapping("/execute")
-    public Callable<ScriptResponse> execute(@ValidatePayload @RequestBody ScriptRequest scriptRequest, HttpSession httpSession) {
-        return new Callable<ScriptResponse>() {
-            @Override
-            public ScriptResponse call() throws InterpreterException {
-                scriptRequest.setSessionId(scriptRequest.getSessionId() != null ? scriptRequest.getSessionId() : httpSession.getId());
-                getInterpreterRequest(scriptRequest);
-                if (!supportedLang(scriptRequest.getLanguage())) {
-                    throw new InterpreterException(NOT_SUPPORTED_LANG);
-                }
-                AbstractLangInterpreter abstractLangInterpreter = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(), AbstractLangInterpreter.class, scriptRequest.getLanguage());
-                ScriptResponse scriptResponse = abstractLangInterpreter.execute(scriptRequest);
-                return scriptResponse;
+    public Callable<ScriptResponse> executeC(@ValidatePayload @RequestBody ScriptRequest scriptRequest, HttpSession httpSession) throws InterpreterException {
+        Callable<ScriptResponse> callableObj = () -> {
+            scriptRequest.setSessionId(scriptRequest.getSessionId() != null ? scriptRequest.getSessionId() : httpSession.getId());
+            getInterpreterRequest(scriptRequest);
+            if (!supportedLang(scriptRequest.getLanguage())) {
+                throw new InterpreterException(NOT_SUPPORTED_LANG);
             }
+            AbstractLangInterpreter abstractLangInterpreter = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(), AbstractLangInterpreter.class, scriptRequest.getLanguage());
+            ScriptResponse scriptResponse = abstractLangInterpreter.execute(scriptRequest);
+            return scriptResponse;
         };
+        return callableObj;
     }
 
     private void getInterpreterRequest(ScriptRequest scriptRequest) {

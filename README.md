@@ -2,18 +2,21 @@
 Java / Spring Boot Notebook Server can execute and include a code from differents language within there interpretors on java.
 
  ### 1- Installation
+ 
+ Prerequisite 
+ - Git 
+ - Java8
+ - Maven
+##### Installation
 Clone project into a local folder.
 
 $ git clone https://github.com/amineraf/notebook-server
 
-#### Maven Installation
-
-Maven
 Install the last version of Maven.
 
-Build and Run project
+##### Build and Run project
 
-Once every thing is installed, run maven package in the project so the jar file can be generated. (You can skip Tests).
+Once everything is installed, run maven package in the project so the jar file can be generated. (You can skip Tests).
 
 **$ mvn package -DskipTests**
 
@@ -43,6 +46,8 @@ _If the port 8080 is already used you can change the port under notebook-server-
 - example `{"code": "%python print 1+1 ", "sessionId": "96385214524588888"}`
 
 - The code to be interpreted must have the format:%language code knowing that language should be a supported language.
+
+- If the body is empty the error message will be displayed
 
 - If the code is null or didn't respect the above format or include not supported language the error message will be displayed
 
